@@ -1,0 +1,21 @@
+body{
+    background-attachment: fixed;
+    width:100%;
+    background-size:cover;
+    background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('uploads/handwashing.jpg');
+    background-position:center top;
+    background-repeat: no-repeat;
+}
+#form{
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) )
+}
+#wrapper{
+    background: white;
+}
+#wrapper_start{
+    background:none;
+}
+
+#shopping_cart_list{
+    margin-left: -3rem;
+}
