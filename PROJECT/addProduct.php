@@ -45,25 +45,36 @@ if (isset($_POST["add"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <?php include "bootstrapHead.php" ?>
+    <link rel="stylesheet" href="frontPage.css" />
+    <title>Add Item</title>
 </head>
 
 <body>
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
-        <label>Name</label><br>
-        <input type="text" name="name"><br>
-        <label>Image</label><br>
-        <input type="file" name="image" accept="image/*" /><br>
-        <label>Description</label><br>
-        <textarea name="description" id="" cols="30" rows="10"></textarea><br>
-        <label>Storage Quantity</label><br>
-        <input type="number" name="quantity" /><br>
-        <label>Price</label><br>
-        <input type="text" name="price" /><br>
-        <input type="submit" name="add" />
-    </form>
-    <a href="entry.php<?php echo searchPref(); ?>">Go back</a>
-
+    <h3 align="center" class="text-white">Covid Sanitation Shop</h3>
+    <br />
+    <h3 align="center" class="text-white">Add Item</h3>
+    <br />
+    <div class="container" style="width:500px;border: 1px;">
+        <div id="wrapper" class="border bg-light rounded border-secondary p-5" align="center">
+            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
+                <label>Name</label><br>
+                <input type="text" name="name"><br>
+                <label>Image</label><br>
+                <input type="file" name="image" accept="image/*" class="btn border border-primary btn-sm" /><br>
+                <label>Description</label><br>
+                <textarea name="description" id="" cols="30" rows="10"></textarea><br>
+                <label>Storage Quantity</label><br>
+                <input type="number" name="quantity" /><br>
+                <label>Price</label><br>
+                <input type="text" name="price" /><br>
+                <br>
+                <input type="submit" name="add" />
+            </form>
+            <br>
+            <a href="entry.php<?php echo searchPref(); ?>" class="btn btn-secondary btn-lg border border-dark">Go back</a>
+        </div>
+    </div>
 </body>
 
 </html>

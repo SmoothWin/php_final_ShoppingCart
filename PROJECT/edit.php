@@ -68,31 +68,42 @@ if (isset($_POST["edit"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <?php include "bootstrapHead.php" ?>
+    <link rel="stylesheet" href="frontPage.css" />
+    <title>Edit Item</title>
 </head>
 
 <body>
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
-        <label>Name</label><br>
-        <input type="text" name="name" value="<?php echo $_SESSION["admin_edit"]["item_name"] ?>"><br>
-        <label>Image</label><br>
+    <h3 align="center" class="text-white">Covid Sanitation Shop</h3>
+    <br />
+    <h3 align="center" class="text-white">Edit Item</h3>
+    <br />
+    <div class="container" style="width:500px;border: 1px;">
+        <div id="wrapper" class="border bg-light rounded border-secondary p-5" align="center">
+            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
+                <label>Name</label><br>
+                <input type="text" name="name" value="<?php echo $_SESSION["admin_edit"]["item_name"] ?>"><br>
+                <label>Image</label><br>
 
-        <?php if (!empty($_SESSION["admin_edit"]["item_image"])) {
-            echo '<img src="data:image/jpeg;base64,' . $_SESSION["admin_edit"]["item_image"] . '"style="width:200px; height: 200px;"/><br />';
-        } ?>
-        <input type="file" name="image" accept="image/*" /><br>
-        <label>Description</label><br>
-        <textarea name="description" id="" cols="30" rows="10"><?php echo $_SESSION["admin_edit"]["item_description"] ?>
+                <?php if (!empty($_SESSION["admin_edit"]["item_image"])) {
+                    echo '<img class="border border-dark rounded" src="data:image/jpeg;base64,' . $_SESSION["admin_edit"]["item_image"] . '"style="width:200px; height: 200px;"/><br />';
+                } ?>
+                <input type="file" name="image" accept="image/*" class="btn border border-primary btn-sm" /><br>
+                <label>Description</label><br>
+                <textarea name="description" id="" cols="30" rows="10"><?php echo $_SESSION["admin_edit"]["item_description"] ?>
         </textarea><br>
-        <label>Storage Quantity</label><br>
-        <input type="number" name="quantity" value="<?php echo $_SESSION["admin_edit"]["item_quantity"] ?>" /><br>
-        <label>Price</label><br>
-        <input type="text" name="price" value="<?php echo $_SESSION["admin_edit"]["item_price"] ?>" /><br>
-        <input type="submit" name="edit" value="Save changes" />
-        <input type="submit" name="delete" value="Remove Item" />
-    </form>
-    <a href="entry.php<?php echo searchPref(); ?>">Go back</a>
-
+                <label>Storage Quantity</label><br>
+                <input type="number" name="quantity" value="<?php echo $_SESSION["admin_edit"]["item_quantity"] ?>" /><br>
+                <label>Price</label><br>
+                <input type="text" name="price" value="<?php echo $_SESSION["admin_edit"]["item_price"] ?>" /><br><br>
+                <input type="submit" name="edit" value="Save changes" class="btn btn-success btn-sm border border-dark" />
+                <input type="submit" name="delete" value="Remove Item" class="btn btn-danger btn-sm border border-dark" />
+            </form>
+            <br>
+            <a href="entry.php<?php echo searchPref(); ?>" class="btn btn-secondary btn-lg border border-dark">Go back</a>
+        </div>
+    </div>
+    <?php include "bootstrapBody.php" ?>
 </body>
 
 </html>

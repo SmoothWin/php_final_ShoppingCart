@@ -141,7 +141,7 @@ if (isset($_POST["edit-item"])) {
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light px-5">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light px-5 fixed-top">
         <h3 align="center" class="navbar-header">Covid Shop</h3>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 r-5 col-12 d-flex justify-content-around">
@@ -186,7 +186,7 @@ if (isset($_POST["edit-item"])) {
                                                     <input type="hidden" name="idForDelete" value="<?php echo $values["item_id"] ?>">
                                                     <!-- error here when you add then 
                                                 add above 1 then delete that item and then u add another item -->
-                                                    <input type="submit" name="delete" value="Remove">
+                                                    <input type="submit" name="delete" class="btn btn-success btn-sm" value="Remove">
                                                 </form>
                                             </td>
                                         </tr>
@@ -205,15 +205,16 @@ if (isset($_POST["edit-item"])) {
         </div>
     </nav>
     <div class="container">
-        <div id="wrapper" class="p-5">
-            <div class="navbar navbar-expand-lg navbar-light bg-light px-5">
-                <form method="get" action="<?php echo $_SERVER['PHP_SELF'] ?>" class="d-flex justify-content-between">
-                    <h4 class="text-info">Search...</h4>
+        <div id="wrapper" class="p-5 mt-4">
+            <div class="">
+                <form method="get" action="<?php echo $_SERVER['PHP_SELF'] ?>" class="d-flex align-items-start flex-column">
+                    <div>
+                        <h4 class="text-info">Search...</h4>
 
-                    <input style="height:30px;" type="text" name="search" value="<?php echo $search ?>" placeholder="Name..." />
-                    <input style="height:30px;" type="submit" style="margin-top:5px;" class="mx-2 btn btn-success btn-sm" name="searching" value="Search" />
-
-                    <div class="mx-3">
+                        <input style="height:30px;" type="text" name="search" value="<?php echo $search ?>" placeholder="Name..." />
+                        <input style="height:30px;" type="submit" style="margin-top:5px;" class="mx-2 btn btn-success btn-sm" name="searching" value="Search" />
+                    </div>
+                    <div class="mt-2">
                         <span>
                             Max Price:
                             <input style="width:70px;" style="height:30px;" type="number" name="maximum" value="<?php echo $maximum ?>" placeholder="9999">
@@ -222,6 +223,8 @@ if (isset($_POST["edit-item"])) {
                             Min Price:
                             <input style="width:50px;" style="height:30px;" type="number" name="minimum" value="<?php echo $minimum ?>" placeholder="0">
                         </span>
+                    </div>
+                    <div class="mt-2">
                         <span>
                             Sort by:
                             <select style="width:130px;" style="height:30px;" name="sort" id="sort">
@@ -236,7 +239,7 @@ if (isset($_POST["edit-item"])) {
                 <?php
                 if ($_SESSION["isAdmin"] == true) {
                 ?>
-                    <form action="addProduct.php" method="POST">
+                    <form action="addProduct.php" method="POST" align="right">
                         <input class="btn btn-sm btn-danger" style="height:30px;" type="submit" value="Add Item" />
                     </form>
                 <?php
@@ -257,14 +260,14 @@ if (isset($_POST["edit-item"])) {
                     <div class="mx-auto col-10">
                         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="d-flex">
 
-                            <div id="left" class="bg-light col-3 p-1" align="center">
+                            <div id="left" class="bg-light col-3 p-1 pb-3" align="center">
                                 <h4><?php echo $product["name"] ?></h4>
                                 <?php if (!is_null($product['image'])) {
-                                    echo '<img class="border border-secondary img-fluid rounded" src="data:image/jpeg;base64,' . base64_encode($product['image']) . '"style="width:200px; height: 200px;"/><br />';
+                                    echo '<img style="width:80%;" class="border border-secondary rounded" src="data:image/jpeg;base64,' . base64_encode($product['image']) . '"style="width:200px; height: 200px;"/><br />';
                                 } ?>
                                 <h4>$<?php echo $product["price"] ?></h4>
                                 <h4>Quantity left: <?php echo $product["quantity"] ?></h4>
-                                <label for="quantity">Quantity</label> <input class="col-3" type="number" name="quantity" value="1" /><br>
+                                <label for="quantity">Quantity</label> <input class="col-4" type="number" name="quantity" value="1" /><br>
                                 <input type="hidden" name="hidden_id" value="<?php echo $product["id"] ?>" />
                                 <input type="hidden" name="hidden_name" value="<?php echo $product["name"] ?>" />
                                 <input type="hidden" name="hidden_price" value="<?php echo $product["price"] ?>" />
@@ -273,11 +276,11 @@ if (isset($_POST["edit-item"])) {
                                 <input type="hidden" name="hidden_image" value="<?php if (!is_null($product['image'])) {
                                                                                     echo base64_encode($product['image']);
                                                                                 }  ?>" />
-                                <input class="btn btn-primary btn active mt-3" type="submit" name="add" value="Add to Shopping Cart" />
+                                <input class="btn btn-primary btn-sm active mt-3" type="submit" name="add" value="Add to Cart" />
                                 <?php
                                 if ($isAdmin == true) {
                                 ?>
-                                    <input type="submit" class="btn btn-danger btn active mt-3" name="edit-item" value="edit" />
+                                    <input type="submit" class="btn btn-danger btn-sm active mt-3" name="edit-item" value="edit" />
                                 <?php
                                 }
                                 ?>
