@@ -11,6 +11,8 @@ if ($_SESSION["isAdmin"] == false) {
 } else {
     $isAdmin = true;
 }
+$totalPriceShoppingCart = 0; //for shopping cart total
+
 $search = isset($_SESSION["search"]) ? strip_tags($_SESSION["search"]) : "";
 $maximum = isset($_SESSION["maximum"]) ? strip_tags($_SESSION["maximum"]) : "";
 $minimum = isset($_SESSION["minimum"]) ? strip_tags($_SESSION["minimum"]) : "";
@@ -78,7 +80,7 @@ if (isset($_POST["edit-item"])) {
 }
 ?>
 
-<?php if (isset($search) || isset($maximum) || isset($minimum) || isset($sort)) {
+<?php if (isset($search) || isset($maximum) || isset($minimum) || isset($sort)) { //SQL query with prepare statement
     $sql = "SELECT i.* FROM PRODUCT i";
     if (!empty($search) && !empty($maximum) && !empty($minimum)) {
         $sql .= " WHERE";
@@ -130,7 +132,6 @@ if (isset($_POST["edit-item"])) {
     }
 }
 
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -175,8 +176,11 @@ if (isset($_POST["edit-item"])) {
                                     <th>Total</th>
                                 </tr>
                                 <?php
+                                $totalPriceShoppingCart = 0;
                                 if (isset($_SESSION["shopping_cart"])) {
-                                    foreach ($_SESSION["shopping_cart"] as $keys => $values) { ?>
+                                    foreach ($_SESSION["shopping_cart"] as $keys => $values) {
+                                        $totalPriceShoppingCart += $values["item_price"];
+                                ?>
                                         <tr>
                                             <td class="col-6"><?php echo isset($values["item_name"]) ? $values["item_name"] : ""; ?></td>
                                             <td class="col-1" align="right"><?php echo isset($values["item_quantity"]) ? $values["item_quantity"] : ""; ?></td>
@@ -192,6 +196,7 @@ if (isset($_POST["edit-item"])) {
                                             </td>
                                         </tr>
                                 <?php } //end: foreach
+                                    echo "Total: $" . $totalPriceShoppingCart;
                                 } //end: if (isset($_SESSION["shopping_cart"])) {
                                 ?>
                             </table>
