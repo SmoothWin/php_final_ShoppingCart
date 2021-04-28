@@ -60,6 +60,7 @@ if (isset($_POST["delete"])) {
             header("location: entry.php?" . searchPref());
         }
     }
+    $_SESSION["shopping_cart"] = array_values($_SESSION["shopping_cart"]);
 }
 if (isset($_POST["edit-item"])) {
 
